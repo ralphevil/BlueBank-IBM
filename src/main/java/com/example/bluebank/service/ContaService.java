@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.bluebank.dto.ContaInserirDTO;
 import com.example.bluebank.dto.ContaRetornoDTO;
 import com.example.bluebank.model.Conta;
+import com.example.bluebank.repository.ClienteRepository;
 import com.example.bluebank.repository.ContaRepository;
 import com.example.bluebank.request.ResponseModel;
 
@@ -31,7 +32,7 @@ public class ContaService {
 		Conta conta = mapper.map(contadto, Conta.class);
 		contarepository.save(conta);
 		
-		//return mapper.map(conta, ContaRetornoDTO.class);
+	
 		ResponseModel<ContaRetornoDTO> retorno = new ResponseModel<>();
 		
 		retorno.setStatus("ok");
@@ -41,5 +42,9 @@ public class ContaService {
 		return retorno;
 		
 	}
+	
+
+	
+
 	
 }

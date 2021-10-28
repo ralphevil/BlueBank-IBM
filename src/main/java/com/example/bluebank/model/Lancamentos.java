@@ -21,13 +21,13 @@ public class Lancamentos {
 	private int idcliente;
 	@Column(name = "c_idconta",columnDefinition = "integer")
 	private int idconta;
-	@Column(name = "c_dataevento",columnDefinition = "date")
+	@Column(name = "c_dataevento",columnDefinition = "varchar(10)")
 	private String data_evento;
 	@Column(name = "c_tipo",columnDefinition = "varchar(1)")
 	private String tipo;
 	@Column(name = "c_motivo",columnDefinition = "varchar(100)")
 	private String motivo;
 	@Column(name = "c_valor",columnDefinition = "numeric(13,2)")
-	private boolean valor;
+	private double valor;
 
 }
