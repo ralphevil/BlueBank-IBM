@@ -30,14 +30,14 @@ public class SwaggerConfig extends WebMvcConfigurationSupport{
 				.build()
 				.apiInfo(ApiInfo())
 				.tags(new Tag("Clientes", "Documentação para listar Posts e Gets clientes"),
-					  new Tag("Conta Corrente", "Webservices relacionados ao conta corrente"));
+					  new Tag("Contas", "Webservices relacionados as contas bancarias"));
 		
 	}
 
 	private ApiInfo ApiInfo() {
 		return new ApiInfoBuilder().title("Api de integração BLUBANK IBM")
-				.description("Documentação das requisições para blubank")
-				.version("0.0.1")
+				.description("Documentação das requisições para Blubank")
+				.version("1.0.0")
 				.build();
 	}
 	

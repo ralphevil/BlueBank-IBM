@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ClienteInserirDTO {
+public class ClienteRetornoDTO {
 	
-	@ApiModelProperty(value = "nome do cliente", required = true,position = 1)
+	private int    id;
 	private String nome;
 	private String pessoa;
 	private String status;
@@ -17,5 +17,6 @@ public class ClienteInserirDTO {
 	private String telefone;
 	private String celular;
 	private String cgc;
+
 
 }
