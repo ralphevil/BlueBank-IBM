@@ -1,6 +1,5 @@
 package com.example.bluebank.dto;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

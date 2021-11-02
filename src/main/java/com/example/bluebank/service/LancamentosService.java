@@ -53,7 +53,7 @@ public class LancamentosService {
 		
 	}
 	
-	public LancamentoRetornoDTO lancamanual(int idconta,Number valor,String motivo) {
+	public LancamentoRetornoDTO lancamanual(int idconta,Double valor,String motivo) {
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Lancamentos lancamento = new Lancamentos();
@@ -62,7 +62,7 @@ public class LancamentosService {
 		Optional<Conta> optconta = contarepository.findById(idconta);
 		lancamento.setIdcliente(optconta.get().getIdcliente());
 		lancamento.setMotivo(motivo);
-		
+		lancamento.setValor(valor);		
 		lancamentosrepository.save(lancamento);
 		return mapper.map(lancamento, LancamentoRetornoDTO.class);
 		

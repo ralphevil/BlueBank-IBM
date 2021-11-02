@@ -6,10 +6,10 @@ CREATE SEQUENCE public.cliente_id_seq
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
-  START 3
+  START 1
   CACHE 1;
 ALTER TABLE public.cliente_id_seq
-  OWNER TO icomp;
+  OWNER TO postgres;
 
 -- Sequence: public.conta_id_seq
 
@@ -19,10 +19,10 @@ CREATE SEQUENCE public.conta_id_seq
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
-  START 6
+  START 1
   CACHE 1;
 ALTER TABLE public.conta_id_seq
-  OWNER TO icomp;
+  OWNER TO postgres;
 
 -- Sequence: public.lancamentos_id_seq
 
@@ -32,10 +32,10 @@ CREATE SEQUENCE public.lancamentos_id_seq
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
-  START 2
+  START 1
   CACHE 1;
 ALTER TABLE public.lancamentos_id_seq
-  OWNER TO icomp;
+  OWNER TO postgres;
 
 
 -- Table: public.cliente
@@ -58,7 +58,7 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.cliente
-  OWNER TO icomp;
+  OWNER TO postgres;
 
 -- Table: public.conta
 
@@ -79,17 +79,7 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.conta
-  OWNER TO icomp;
-
--- Trigger: tg_lancamentos on public.conta
-
--- DROP TRIGGER tg_lancamentos ON public.conta;
-
-CREATE TRIGGER tg_lancamentos
-  AFTER INSERT
-  ON public.conta
-  FOR EACH ROW
-  EXECUTE PROCEDURE public.lancamentos();
+  OWNER TO postgres;
 
 -- Table: public.lancamentos
 
@@ -109,44 +99,10 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.lancamentos
-  OWNER TO icomp;
+  OWNER TO postgres;
 
 -- Function: public.lancamentos()
 
 -- DROP FUNCTION public.lancamentos();
 
-CREATE OR REPLACE FUNCTION public.lancamentos()
-  RETURNS trigger AS
-$BODY$    
-  
 
-   BEGIN    
-  
-   	if upper(TG_OP) in ('INSERT') then   
-  
-      INSERT INTO lancamentos
-            (c_idcliente,
-             c_idconta,
-             c_tipo,
-             c_motivo,
-             c_valor,
-             c_dataevento)
-VALUES      
-            (new.c_idcliente,
-             new.id,
-             'C',
-             'Saldo Inicial',
-             new.c_saldoinicial,
-             CURRENT_DATE);  
-
-	END IF;  
-   	RETURN NEW;    
-  
-  
-   END;    
-  
-   $BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION public.lancamentos()
-  OWNER TO icomp;
