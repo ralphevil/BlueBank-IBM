@@ -22,16 +22,13 @@ public class ContaService {
 	private ClienteService clienteservice;
 	
 	@Autowired
-	private LancamentosRepository lancamentosrepository;
-	
-	@Autowired
 	private LancamentosService lancamentoservice;
 	
 	@Autowired
 	private ModelMapper mapper;
 
 	public ResponseModel<ContaRetornoDTO> inserirConta(ContaInserirDTO contadto) {
-		
+
 		if(!clienteservice.clienteExiste(contadto.getIdcliente())) {
 		throw new RuntimeException("Cliente não existe");
 		}
@@ -39,7 +36,7 @@ public class ContaService {
 		
 		Conta conta = mapper.map(contadto, Conta.class);
 		contarepository.save(conta);
-		lancamentoservice.lancamanual(conta.getId(), conta.getSaldoinicial(), "Saldo Inicial");
+		lancamentoservice.lancamanual(conta.getId(), conta.getSaldoinicial(), "Saldo Inicial","C");
 		
 	
 		ResponseModel<ContaRetornoDTO> retorno = new ResponseModel<>();
