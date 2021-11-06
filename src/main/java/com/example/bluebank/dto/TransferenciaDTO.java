@@ -1,5 +1,7 @@
 package com.example.bluebank.dto;
 
+import java.math.BigDecimal;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +15,5 @@ public class TransferenciaDTO {
 	@ApiModelProperty(value = "ID da conta favorecida", required = true,position = 2)
 	private int idcontafavorecido;
 	@ApiModelProperty(value = "Valor da transferencia", required = true,position = 3)
-	private double valor;	
+	private BigDecimal valor;	
 }
