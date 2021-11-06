@@ -3,13 +3,15 @@ package com.example.bluebank.dto;
 import java.math.BigDecimal;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class LancamentoRetornoDTO {
-	
+@AllArgsConstructor
+public class LancamentoConsultaDTO {
+
 	@ApiModelProperty(value = "ID da tabela Lancamento, tamanho 32 int", required = true,position = 1)
 	private Integer id;
 	@ApiModelProperty(value = "ID do Cliente, tamanho 32 int", required = true,position = 2)
@@ -24,5 +26,5 @@ public class LancamentoRetornoDTO {
 	private String motivo;
 	@ApiModelProperty(value = "Valor da transação, tamanho 13 precisão 2", required = true,position = 7)
 	private BigDecimal valor;
-
+	
 }

@@ -1,5 +1,6 @@
 package com.example.bluebank.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bluebank.dto.ContaConsultaDTO;
 import com.example.bluebank.dto.ContaInserirDTO;
 import com.example.bluebank.dto.ContaRetornoDTO;
+import com.example.bluebank.model.Cliente;
 import com.example.bluebank.model.Conta;
 import com.example.bluebank.repository.ContaRepository;
 import com.example.bluebank.request.ResponseModel;
@@ -37,15 +40,25 @@ public class ContaController {
 
 		return contaservice.inserirConta(contadto);
 	}
-	
-	@GetMapping
-	public Iterable<Conta> obterTodasContas() {
-		return contarepository.findAll();
+	@ApiOperation(value = "Lista os dados da conta bancaria", notes = "Requisição para buscar por qualquer campo da entidade contabancaria.")
+	@PostMapping("listar")
+	public List<ContaRetornoDTO> obterContas(@RequestBody ContaConsultaDTO consulta) {
+		return contaservice.retornaTodasContas(consulta);
 	}
 	
-	@GetMapping(path="/{id}")
-	public Optional<Conta> obterContasPorId(@PathVariable int id) {
-		return contarepository.findById(id);
-	}
-	
+//	@GetMapping
+//	public Iterable<Conta> obterTodasContas() {
+//		return contarepository.findAll();
+//	}
+//		
+//		
+//	@GetMapping("/porid")
+//	public Conta obterContasPorId() {
+//		Conta c = new Conta();// contarepository.findAll().iterator().next();
+//		c.setId(1);
+//		c.setNomeagencia("Agencia");
+//		System.out.println(c);
+//		return c;
+//	}
+//	
 }

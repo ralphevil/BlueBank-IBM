@@ -1,5 +1,8 @@
 package com.example.bluebank.dto;
 
+import java.math.BigDecimal;
+
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,10 +10,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LancamentoInserirDTO {
 
-	private int idcliente;
-	private int idconta;
+	@ApiModelProperty(value = "ID do Cliente, tamanho 32 int", required = true,position = 1)
+	private Integer idcliente;
+	@ApiModelProperty(value = "ID da conta bancaria, tamanho 32 int", required = true,position = 2)
+	private Integer idconta;
+	@ApiModelProperty(value = "Data em que o evento aconteceu", required = true,position = 3)
 	private String data_evento;
+	@ApiModelProperty(value = "Tipo de transação (D,C)- Debito ou Credito, tamanho 1", required = true,position = 4)
 	private String tipo;
+	@ApiModelProperty(value = "Motivo da transação Bancaria, tamanho 100", required = true,position = 5)
 	private String motivo;
-	private double valor;
+	@ApiModelProperty(value = "Valor da transação, tamanho 13 precisão 2", required = true,position = 6)
+	private BigDecimal valor;
 }

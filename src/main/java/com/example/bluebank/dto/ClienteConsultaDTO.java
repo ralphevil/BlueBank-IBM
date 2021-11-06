@@ -1,13 +1,16 @@
 package com.example.bluebank.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class ClienteInserirDTO {
+public class ClienteConsultaDTO {
 	
+	private Integer id;
 	@ApiModelProperty(value = "Nome do cliente, tamanho 100", required = true,position = 1)
 	private String nome;
 	@ApiModelProperty(value = "Tipo de pessoa se e fisica ou juridica valores (F,J) tamanho 1", required = true,position = 2)
@@ -24,5 +27,6 @@ public class ClienteInserirDTO {
 	private String celular;
 	@ApiModelProperty(value = "CPF OU CNPJ do cliente, tamanho 14", required = true,position = 8)
 	private String cgc;
+
 
 }

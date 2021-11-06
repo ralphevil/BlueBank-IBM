@@ -1,13 +1,19 @@
 package com.example.bluebank.service;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import com.example.bluebank.dto.ContaRetornoDTO;
+import com.example.bluebank.dto.LancamentoConsultaDTO;
 import com.example.bluebank.dto.LancamentoInserirDTO;
 import com.example.bluebank.dto.LancamentoRetornoDTO;
 import com.example.bluebank.model.Conta;
@@ -53,7 +59,7 @@ public class LancamentosService {
 		
 	}
 	
-	public LancamentoRetornoDTO lancamanual(int idconta,Double valor,String motivo,String tipo) {
+	public LancamentoRetornoDTO lancamanual(Integer idconta,BigDecimal valor,String motivo,String tipo) {
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Lancamentos lancamento = new Lancamentos();
@@ -65,11 +71,20 @@ public class LancamentosService {
 		lancamento.setValor(valor);		
 		lancamento.setTipo(tipo);
 		lancamentosrepository.save(lancamento);
-		return mapper.map(lancamento, LancamentoRetornoDTO.class);
+		return mapper.map(lancamento, LancamentoRetornoDTO.class);		
+	}
+	
+	public List<LancamentoRetornoDTO> retornaTodosLancamentos(LancamentoConsultaDTO consulta) {
+		Lancamentos lancamento = mapper.map(consulta, Lancamentos.class);
+		List<Lancamentos> lista  = lancamentosrepository.findAll(Example.of(lancamento));
 		
-		
-		
-		
+		List<LancamentoRetornoDTO> listaconvertida = new ArrayList<>();
+		for(int c = 0; c < lista.size(); c++) {
+			LancamentoRetornoDTO ret = mapper.map(lista.get(c), LancamentoRetornoDTO.class);
+			listaconvertida.add(ret);
+		}
+		return listaconvertida;
+//		//return lista.stream().map(obj-> mapper.map(obj, ContaRetornoDTO.class)).collect(Collectors.toList());
 	}
 
 }

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY.AUTO)
-	private int id;
+	private Integer id;
 	@Column(name="c_nome",columnDefinition = "varchar(100)")
 	private String nome;
 	@Column(name="c_pessoa",columnDefinition = "varchar(1)")
