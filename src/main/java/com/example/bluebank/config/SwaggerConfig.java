@@ -31,7 +31,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport{
 				.apiInfo(ApiInfo())
 				.tags(new Tag("Clientes", "Documentação para listar Posts e Gets clientes"),	
 					  new Tag("Contas", "Webservices relacionados as contas bancarias"),
-					  new Tag("Lancamentos", "Documentação para listar Posts e Gets dos lancamentos Bancarios"));
+					  new Tag("Lancamentos", "Documentação para listar Posts e Gets dos lancamentos bancarios"),
+					  new Tag("Transferencias","Documentação para efetuar a transferencia entre contas bancarias"));
 		
 	}
 
